@@ -1,0 +1,372 @@
+
+        <div class="master">
+            <div class="box">
+                <div class="header">
+                    <h1 class="header__title">    <i class="fa fa-magic fa-fw" aria-hidden="true"></i>
+    Guided <code>.env</code> Wizard
+</h1>
+                </div>
+                <ul class="step">
+                    <li class="step__divider"></li>
+                    <li class="step__item ">
+                        <i class="step__icon fa fa-server" aria-hidden="true"></i>
+                    </li>
+                    <li class="step__divider"></li>
+                    <li class="step__item  active ">
+                                                    <a href="<?php echo base_url();?>install/environment">
+                                <i class="step__icon fa fa-cog" aria-hidden="true"></i>
+                            </a>
+                                            </li>
+                    <li class="step__divider"></li>
+                    <li class="step__item ">
+                                                    <a href="<?php echo base_url();?>install/permissions">
+                                <i class="step__icon fa fa-key" aria-hidden="true"></i>
+                            </a>
+                                            </li>
+                    <li class="step__divider"></li>
+                    <li class="step__item ">
+                                                    <a href="<?php echo base_url();?>install/requirements">
+                                <i class="step__icon fa fa-list" aria-hidden="true"></i>
+                            </a>
+                                            </li>
+                    <li class="step__divider"></li>
+                    <li class="step__item ">
+                                                    <a href="<?php echo base_url();?>install">
+                                <i class="step__icon fa fa-home" aria-hidden="true"></i>
+                            </a>
+                                            </li>
+                    <li class="step__divider"></li>
+                </ul>
+                <div class="main">
+                                                                <div class="tabs tabs-full">
+
+        <input id="tab1" type="radio" name="tabs" class="tab-input" checked />
+        <label for="tab1" class="tab-label">
+            <i class="fa fa-cog fa-2x fa-fw" aria-hidden="true"></i>
+            <br />
+            Environment
+        </label>
+
+        <input id="tab2" type="radio" name="tabs" class="tab-input" />
+        <label for="tab2" class="tab-label">
+            <i class="fa fa-database fa-2x fa-fw" aria-hidden="true"></i>
+            <br />
+            Database
+        </label>
+
+        <input id="tab3" type="radio" name="tabs" class="tab-input" />
+        <label for="tab3" class="tab-label">
+            <i class="fa fa-cogs fa-2x fa-fw" aria-hidden="true"></i>
+            <br />
+            Application
+        </label>
+
+        <form method="post" action="<?php echo base_url();?>install/saveWizard" class="tabs-wrap">
+            <div class="tab" id="tab1content">
+                <input type="hidden" name="_token" value="Pu4elV0SfsCEbiYwd7mm5qGNJTtpduyxtZBzmekj">
+
+                <div class="form-group ">
+                    <label for="app_name">
+                        App Name
+                    </label>
+                    <input type="text" name="app_name" id="app_name" value="" placeholder="App Name" />
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="environment">
+                        App Environment
+                    </label>
+                    <select name="environment" id="environment" onchange='checkEnvironment(this.value);'>
+                        <option value="local" selected>Local</option>
+                        <option value="development">Development</option>
+                        <option value="qa">Qa</option>
+                        <option value="production">Production</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div id="environment_text_input" style="display: none;">
+                        <input type="text" name="environment_custom" id="environment_custom" placeholder="Enter your environment..."/>
+                    </div>
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="app_debug">
+                        App Debug
+                    </label>
+                    <label for="app_debug_true">
+                        <input type="radio" name="app_debug" id="app_debug_true" value=true checked />
+                        True
+                    </label>
+                    <label for="app_debug_false">
+                        <input type="radio" name="app_debug" id="app_debug_false" value=false />
+                        False
+                    </label>
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="app_log_level">
+                        App Log Level
+                    </label>
+                    <select name="app_log_level" id="app_log_level">
+                        <option value="debug" selected>debug</option>
+                        <option value="info">info</option>
+                        <option value="notice">notice</option>
+                        <option value="warning">warning</option>
+                        <option value="error">error</option>
+                        <option value="critical">critical</option>
+                        <option value="alert">alert</option>
+                        <option value="emergency">emergency</option>
+                    </select>
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="app_url">
+                        App Url
+                    </label>
+                    <input type="url" name="app_url" id="app_url" value="http://localhost" placeholder="App Url" />
+                                    </div>
+
+                <div class="buttons">
+                    <button class="button" onclick="showDatabaseSettings();return false">
+                        Setup Database
+                        <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="tab" id="tab2content">
+
+                <div class="form-group ">
+                    <label for="database_connection">
+                        Database Connection
+                    </label>
+                    <select name="database_connection" id="database_connection">
+                        <option value="mysql" selected>mysql</option>
+                        <option value="sqlite">sqlite</option>
+                        <option value="pgsql">pgsql</option>
+                        <option value="sqlsrv">sqlsrv</option>
+                    </select>
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="database_hostname">
+                        Database Host
+                    </label>
+                    <input type="text" name="database_hostname" id="database_hostname" value="127.0.0.1" placeholder="Database Host" />
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="database_port">
+                        Database Port
+                    </label>
+                    <input type="number" name="database_port" id="database_port" value="3306" placeholder="Database Port" />
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="database_name">
+                        Database Name
+                    </label>
+                    <input type="text" name="database_name" id="database_name" value="" placeholder="Database Name" />
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="database_username">
+                        Database User Name
+                    </label>
+                    <input type="text" name="database_username" id="database_username" value="" placeholder="Database User Name" />
+                                    </div>
+
+                <div class="form-group ">
+                    <label for="database_password">
+                        Database Password
+                    </label>
+                    <input type="password" name="database_password" id="database_password" value="" placeholder="Database Password" />
+                                    </div>
+
+                <div class="buttons">
+                    <button class="button" onclick="showApplicationSettings();return false">
+                        Setup Application
+                        <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="tab" id="tab3content">
+                <div class="block">
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab1" value="null" checked />
+                    <label for="appSettingsTab1">
+                        <span>
+                            Broadcasting, Caching, Session, &amp;amp; Queue
+                        </span>
+                    </label>
+
+
+
+
+
+
+
+                    <div class="info">
+                        <div class="form-group ">
+                            <label for="broadcast_driver">Broadcast Driver
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/broadcasting" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="broadcast_driver" id="broadcast_driver" value="log" placeholder="Broadcast Driver" />
+                                                    </div>
+
+                        <div class="form-group ">
+                            <label for="cache_driver">Cache Driver
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/cache" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="cache_driver" id="cache_driver" value="file" placeholder="Cache Driver" />
+                                                    </div>
+
+                        <div class="form-group ">
+                            <label for="session_driver">Session Driver
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/session" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="session_driver" id="session_driver" value="file" placeholder="Session Driver" />
+                                                    </div>
+
+                        <div class="form-group ">
+                            <label for="queue_driver">Queue Driver
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/queues" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="queue_driver" id="queue_driver" value="sync" placeholder="Queue Driver" />
+                                                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab2" value="null"/>
+                    <label for="appSettingsTab2">
+                        <span>
+                            Redis Driver
+                        </span>
+                    </label>
+                    <div class="info">
+                        <div class="form-group ">
+                            <label for="redis_hostname">
+                                Redis Host
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/redis" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="redis_hostname" id="redis_hostname" value="127.0.0.1" placeholder="Redis Host" />
+                                                    </div>
+
+                        <div class="form-group ">
+                            <label for="redis_password">Redis Password</label>
+                            <input type="password" name="redis_password" id="redis_password" value="null" placeholder="Redis Password" />
+                                                    </div>
+
+                        <div class="form-group ">
+                            <label for="redis_port">Redis Port</label>
+                            <input type="number" name="redis_port" id="redis_port" value="6379" placeholder="Redis Port" />
+                                                    </div>
+                    </div>
+                </div>
+                <div class="block">
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab3" value="null"/>
+                    <label for="appSettingsTab3">
+                        <span>
+                            Mail
+                        </span>
+                    </label>
+                    <div class="info">
+                        <div class="form-group ">
+                            <label for="mail_driver">
+                                Mail Driver
+                                <sup>
+                                    <a href="https://laravel.com/docs/5.4/mail" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="mail_driver" id="mail_driver" value="smtp" placeholder="Mail Driver" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="mail_host">Mail Host</label>
+                            <input type="text" name="mail_host" id="mail_host" value="smtp.mailtrap.io" placeholder="Mail Host" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="mail_port">Mail Port</label>
+                            <input type="number" name="mail_port" id="mail_port" value="2525" placeholder="Mail Port" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="mail_username">Mail Username</label>
+                            <input type="text" name="mail_username" id="mail_username" value="null" placeholder="Mail Username" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="mail_password">Mail Password</label>
+                            <input type="text" name="mail_password" id="mail_password" value="null" placeholder="Mail Password" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="mail_encryption">Mail Encryption</label>
+                            <input type="text" name="mail_encryption" id="mail_encryption" value="null" placeholder="Mail Encryption" />
+                                                    </div>
+                    </div>
+                </div>
+                <div class="block margin-bottom-2">
+                    <input type="radio" name="appSettingsTabs" id="appSettingsTab4" value="null"/>
+                    <label for="appSettingsTab4">
+                        <span>
+                            Pusher
+                        </span>
+                    </label>
+                    <div class="info">
+                        <div class="form-group ">
+                            <label for="pusher_app_id">
+                                Pusher App Id
+                                <sup>
+                                    <a href="https://pusher.com/docs/server_api_guide" target="_blank" title="More Info">
+                                        <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>
+                                        <span class="sr-only">More Info</span>
+                                    </a>
+                                </sup>
+                            </label>
+                            <input type="text" name="pusher_app_id" id="pusher_app_id" value="" placeholder="Pusher App Id" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="pusher_app_key">Pusher App Key</label>
+                            <input type="text" name="pusher_app_key" id="pusher_app_key" value="" placeholder="Pusher App Key" />
+                                                    </div>
+                        <div class="form-group ">
+                            <label for="pusher_app_secret">Pusher App Secret</label>
+                            <input type="password" name="pusher_app_secret" id="pusher_app_secret" value="" placeholder="Pusher App Secret" />
+                                                    </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="button" type="submit">
+                        Install
+                        <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+                </div>
+            </div>
+        </div>
