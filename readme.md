@@ -46,8 +46,8 @@ The current features are :
 
 ## Contributing
 
-* If you have any suggestions please let me know : https://github.com/zhiephie/ci-instller/pulls.
-* Please help us provide more languages for this awesome package please send a pull request https://github.com/zhiephie/ci-instller/pulls.
+* If you have any suggestions please let me know : https://github.com/zhiephie/ci-installer/pulls.
+* Please help us provide more languages for this awesome package please send a pull request https://github.com/zhiephie/ci-installer/pulls.
 
 ## License
 
