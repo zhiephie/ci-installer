@@ -26,9 +26,9 @@ The current features are :
 ## Installation
 
 1. Download zip file.
-2. Backups file `autload.php`, `config.php`, `database.php`, `routes.php`
+2. Backups file `autoload.php`, `config.php`, `database.php`, `routes.php`
 3. and then, rename file
-	- `autoload.php.install` => `autload.php`
+	- `autoload.php.install` => `autoload.php`
 	- `config.php.install` => `config.php`
 	- `database.php.install` => `database.php`
 	- `routes.php.install` => `routes.php`

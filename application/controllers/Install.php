@@ -1,8 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Install extends MY_Controller {
-
+class Install extends MY_Controller
+{
 	private $_defaultRoute;
 
 	function __construct()
