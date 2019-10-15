@@ -23,9 +23,9 @@ The current features are :
 
 * [CodeIgniter 3.0+](https://codeigniter.com)
 
-## Installation
+## How to Installation
 
-1. Download zip file.
+1. Download [CodeIgniter](https://github.com/bcit-ci/CodeIgniter/archive/3.1.11.zip) zip file.
 2. Backups file `autoload.php`, `config.php`, `database.php`, `routes.php`
 3. and then, rename file
 	- `autoload.php.install` => `autoload.php`
